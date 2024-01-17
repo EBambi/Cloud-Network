@@ -14,3 +14,8 @@ variable "instance_type" {
   type      = string
   default   = "t2.micro"
 }
+
+variable "table_name" {
+  type      = string
+  default   = "terraform-sandbox-us-west-2-lock-dynamo"
+}
