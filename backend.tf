@@ -3,7 +3,7 @@ terraform {
     bucket         = "terraform-sandbox.network"
     key            = "aws/sandbox/Peex/terraform.tfstate"
     region         = "us-east-2"
-    dynamodb_table = var.table_name
+    dynamodb_table = "terraform-sandbox-us-west-2-lock-dynamo"
     encrypt        = true
   }
 }
