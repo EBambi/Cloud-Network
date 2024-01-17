@@ -1,11 +1,11 @@
 resource "aws_dynamodb_table" "terraform_locks" {
   name         = var.table_name
   billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "1106"
+  hash_key     = "LockID"
 
   attribute {
-    name = "1106"
-    type = "N"
+    name = "LockID"
+    type = "S"
   }
 }
 
@@ -16,6 +16,12 @@ terraform {
     region         = "us-east-2"
     dynamodb_table = "terraform-sandbox-us-west-2-lock-dynamo"
     encrypt        = true
+  }
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "~> 4.19.0"
+    }
   }
 }
 
