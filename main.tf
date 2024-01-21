@@ -19,7 +19,7 @@ resource "aws_security_group" "allow_local" {
         from_port   = "22"
         to_port     = "22"
         protocol    = "TCP"
-        cidr_blocks = ["171.68.244.70/32"]
+        cidr_blocks = ["186.113.135.184/32"]
     }
 
     egress {
