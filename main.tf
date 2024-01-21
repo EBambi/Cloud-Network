@@ -36,5 +36,5 @@ resource "aws_key_pair" "deployer" {
 }
 
 resource "aws_vpc" "vpc_us-west-2_esteban" {
-  cidr_block    = "192.168.10.20/16"
+  cidr_block    = "192.168.0.0/16"
 }
