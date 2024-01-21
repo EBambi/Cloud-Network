@@ -36,7 +36,7 @@ resource "aws_instance" "ubuntu-ec2" {
     instance_type           = var.instance_type
     security_groups         = ["esteban-sandbox-group"]
     key_name                = "deployer-key"
-    vpc_security_group_ids  = [data.aws_vpc.selected.id]
+    vpc_security_group_ids  = [data.aws_vpc.id]
 
     tags = {
         Name    = "ubuntu-esteban"
