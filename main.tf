@@ -20,6 +20,10 @@ resource "aws_security_group" "allow_local" {
 
 resource "aws_vpc" "vpc_us-west-2_esteban" {
   cidr_block    = "192.168.0.0/16"
+
+  tags = {
+        Name    = "esteban-sandbox-vpc"
+    }
 }
 
 resource "aws_key_pair" "deployer" {
@@ -32,7 +36,7 @@ resource "aws_instance" "ubuntu-ec2" {
     instance_type           = var.instance_type
     security_groups         = ["esteban-sandbox-group"]
     key_name                = "deployer-key"
-    vpc_security_group_ids  = ["vpc_us-west-2_esteban"]
+    vpc_security_group_ids  = [data.aws_vpc.selected.id]
 
     tags = {
         Name    = "ubuntu-esteban"
