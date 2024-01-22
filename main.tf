@@ -81,7 +81,7 @@ resource "aws_instance" "ubuntu-ec2" {
     security_groups         = ["esteban-lab-group"]
     key_name                = "deployer-key"
     subnet_id               = aws_subnet.subnet1_us-east-2_esteban.id
-    vpc_security_group_ids  = ["aws_security_group.allow_local.id"]
+    vpc_security_group_ids  = ["aws_security_group.allow_local_vpc.id"]
 
     tags = {
         Name    = "ubuntu-esteban"
@@ -94,7 +94,7 @@ resource "aws_instance" "windows-ec2" {
     security_groups         = ["esteban-lab-group"]
     key_name                = "deployer-key"
     subnet_id               = aws_subnet.subnet2_us-east-2_esteban.id
-    vpc_security_group_ids  = ["aws_security_group.allow_local.id"]
+    vpc_security_group_ids  = ["aws_security_group.allow_local_vpc.id"]
 
     tags = {
         Name    = "windows-esteban"
