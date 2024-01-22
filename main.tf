@@ -61,6 +61,7 @@ resource "aws_instance" "ubuntu1-ec2" {
     vpc_security_group_ids      = [aws_security_group.allow_local_vpc.id]
     private_ip                  = "10.0.0.10"
     associate_public_ip_address = true
+    public_dns                  = "ec2.us-east-2.compute.amazonaws.com"
 
     tags = {
         Name    = "ubuntu1-esteban"
