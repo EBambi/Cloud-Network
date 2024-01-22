@@ -66,7 +66,7 @@ resource "aws_instance" "ubuntu1-ec2" {
 }
 
 resource "aws_instance" "ubuntu2-ec2" {
-    ami                     = var.instance_ami_windows
+    ami                     = var.instance_ami_ubuntu
     instance_type           = var.instance_type
     key_name                = "PeexMain"
     subnet_id               = aws_subnet.subnet2_us-east-2_esteban.id
