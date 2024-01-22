@@ -56,7 +56,7 @@ resource "aws_subnet" "subnet2_us-east-2_esteban" {
 resource "aws_instance" "ubuntu1-ec2" {
     ami                         = var.instance_ami_ubuntu
     instance_type               = var.instance_type
-    key_name                    = aws_key_pair.PeexMain.public_key
+    key_name                    = "PeexMain"
     subnet_id                   = aws_subnet.subnet1_us-east-2_esteban.id
     vpc_security_group_ids      = [aws_security_group.allow_local_vpc.id]
     private_ip                  = "10.0.0.10"
