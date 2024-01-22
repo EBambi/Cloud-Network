@@ -19,7 +19,7 @@ resource "aws_security_group" "allow_local" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "inbound-ssh-local" {
-    security_group_id = aws_security_group.allow_local.id
+    security_group_id = aws_security_group.allow_local_vpc.id
 
     cidr_ipv4      = "186.113.135.184/32"
     from_port      = "22"
@@ -28,7 +28,7 @@ resource "aws_vpc_security_group_ingress_rule" "inbound-ssh-local" {
 }
 
 resource "aws_vpc_security_group_egress_rule" "outbount-all-all" {
-    security_group_id = aws_security_group.allow_local.id
+    security_group_id = aws_security_group.allow_local_vpc.id
 
     cidr_ipv4      = "0.0.0.0/0"
     ip_protocol    = "-1"
@@ -41,7 +41,7 @@ resource "aws_security_group" "allow_local_vpc" {
 }
 
 resource "aws_vpc" "vpc_us-east-2_esteban" {
-  cidr_block            = "10.0.0.0/16"
+  cidr_block    = "10.0.0.0/16"
 
   tags = {
         Name    = "vent-nebo"
