@@ -76,10 +76,9 @@ resource "aws_key_pair" "deployer" {
 resource "aws_instance" "ubuntu-ec2" {
     ami                     = var.instance_ami_ubuntu
     instance_type           = var.instance_type
-    security_groups         = ["esteban-lab-group"]
+    security_groups         = ["esteban-lab-vpc"]
     key_name                = "deployer-key"
     subnet_id               = aws_subnet.subnet1_us-east-2_esteban.id
-    vpc_security_group_ids  = ["esteban-lab-vpc"]
 
     tags = {
         Name    = "ubuntu-esteban"
@@ -89,10 +88,9 @@ resource "aws_instance" "ubuntu-ec2" {
 resource "aws_instance" "windows-ec2" {
     ami                     = var.instance_ami_windows
     instance_type           = var.instance_type
-    security_groups         = ["esteban-lab-group"]
+    security_groups         = ["esteban-lab-vpc"]
     key_name                = "deployer-key"
     subnet_id               = aws_subnet.subnet2_us-east-2_esteban.id
-    vpc_security_group_ids  = ["esteban-lab-vpc"]
 
     tags = {
         Name    = "windows-esteban"
