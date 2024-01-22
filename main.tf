@@ -54,14 +54,16 @@ resource "aws_key_pair" "deployer" {
 }
 
 resource "aws_instance" "ubuntu1-ec2" {
-    ami                     = var.instance_ami_ubuntu
-    instance_type           = var.instance_type
-    key_name                = "PeexMain"
-    subnet_id               = aws_subnet.subnet1_us-east-2_esteban.id
-    vpc_security_group_ids  = [aws_security_group.allow_local_vpc.id]
+    ami                         = var.instance_ami_ubuntu
+    instance_type               = var.instance_type
+    key_name                    = "PeexMain"
+    subnet_id                   = aws_subnet.subnet1_us-east-2_esteban.id
+    vpc_security_group_ids      = [aws_security_group.allow_local_vpc.id]
+    private_ip                  = "10.0.0.10"
+    associate_public_ip_address = true
 
     tags = {
-        Name    = "ubuntu-esteban"
+        Name    = "ubuntu1-esteban"
     }
 }
 
@@ -71,8 +73,9 @@ resource "aws_instance" "ubuntu2-ec2" {
     key_name                = "PeexMain"
     subnet_id               = aws_subnet.subnet2_us-east-2_esteban.id
     vpc_security_group_ids  = [aws_security_group.allow_local_vpc.id]
+    private_ip              = "10.0.128.10"
 
     tags = {
-        Name    = "windows-esteban"
+        Name    = "ubuntu2-esteban"
     }
 }
