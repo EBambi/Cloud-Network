@@ -49,14 +49,14 @@ resource "aws_subnet" "subnet2_us-east-2_esteban" {
 }
 
 resource "aws_key_pair" "deployer" {
-    key_name    = "deployer-key"
-    public_key  = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC4ojoTfOUYpSgPzcC8SfTnMslu9j08CPzWpGDDz7FwcFbAALZShRnpQ6R+lDew2vqts+ipJj7MBwjwIRfPRYRQ9Gw6VCRbHRmzzUJkyiH4c9SG4AfGboRKgSAJJq3+jPqr9OMARLNhAURLygJ5UJ6m65CFjjnYy2BAylRyETzLlgPnTJM5KRz+26gswTdp3I30xcGrEj1jcFVRqR19XNXIt4UprOOgeehByPSpjdy+3KnBE6yiiKN+dbt0lUfD5x6jQwI4Df2X8HL63Lj/yePUVmwPFL0WdN2AJFjRpBMo2sVowVBmaZo10tse6sN1wsoj6b9iMWqJ154GOI7RExqNLJEaLVi1BWW34hY2YoRdGQ7QAYZ8OoQ5jwAKCJkoAKs9PRjakw7ugLNrYsbIXul33v/z8vJFkxRRgvCFqP7beM7U/WzEBkK4xG22qVzQC9xTPoU8VQeW5P53KGy6IYSx4Gutx4cShw7Vj2bn6IG5yVvpJpzCSlMBdrb1U+DMbcBPteKjZbrSxfHEd52BmamLQ1dQPBbJS2JvvZwamvVAIMzwuUhhrJ9DQurY40fd6qg+pTIAq5pjSM3qTW/V+OZaTydCrGMOYW3BHlhEav4PiPa2caUcBvYU3cQ6ojlEnNrDtrDeewDVpQF4Obvjul+rtmxCpUGYAh0PeEx5dBtR1Q== estebago@ESTEBAGO-M-X9Q9"
+    key_name    = "PeexMain"
+    public_key  = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/LEjiP13pvURUMq1w56Kkmck8bGqkTCVKafhD26LSQLBd1eeiXj7vUcjikAyqEemlUmEYkW4eRHsN0Y9Y6YOAnNX9iozSACB5Yqhd/qyx5XdN3AN12RPKCG1Plkokp+Qcny5VXYDrq9AF677+2PidCRbx/YYL1eFJr64TZxGmx/UKcfCq4I4/x+Q2JGinym5Pfohe+JL2SyyyoEk5SucMn5rTXGyp25wCq8ZqhgQxS7JK5f8BmnYDZLKCt3EjII3fZIdf7H2h8yTKBix6TPP3IfiZQO/lTeWGPJF1IVMrc9GZC2jaB7uGRK3l/4DUvKAyLJDkNPnDED6mTLU5sv4N PeexMain"
 }
 
-resource "aws_instance" "ubuntu-ec2" {
+resource "aws_instance" "ubuntu1-ec2" {
     ami                     = var.instance_ami_ubuntu
     instance_type           = var.instance_type
-    key_name                = "deployer-key"
+    key_name                = "PeexMain"
     subnet_id               = aws_subnet.subnet1_us-east-2_esteban.id
     vpc_security_group_ids  = [aws_security_group.allow_local_vpc.id]
 
@@ -65,10 +65,10 @@ resource "aws_instance" "ubuntu-ec2" {
     }
 }
 
-resource "aws_instance" "windows-ec2" {
+resource "aws_instance" "ubuntu2-ec2" {
     ami                     = var.instance_ami_windows
     instance_type           = var.instance_type
-    key_name                = "deployer-key"
+    key_name                = "PeexMain"
     subnet_id               = aws_subnet.subnet2_us-east-2_esteban.id
     vpc_security_group_ids  = [aws_security_group.allow_local_vpc.id]
 
