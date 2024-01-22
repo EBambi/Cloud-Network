@@ -56,9 +56,21 @@ resource "aws_instance" "ubuntu-ec2" {
     instance_type           = var.instance_type
     security_groups         = ["esteban-sandbox-group"]
     key_name                = "deployer-key"
-    vpc_security_group_ids  = ["data.aws_vpc.vpc_us-west-2_esteban.id"]
+    subnet_id               = aws_subnet.subnet1_us-west-2_esteban.id
 
     tags = {
         Name    = "ubuntu-esteban"
+    }
+}
+
+resource "aws_instance" "windows-ec2" {
+    ami                     = var.instance_ami_windows
+    instance_type           = var.instance_type
+    security_groups         = ["esteban-sandbox-group"]
+    key_name                = "deployer-key"
+    subnet_id               = aws_subnet.subnet2_us-west-2_esteban.id
+
+    tags = {
+        Name    = "windows-esteban"
     }
 }
