@@ -1,7 +1,6 @@
 resource "aws_security_group" "allow_local" {
     name        = "esteban-lab-group"
     description = "Allow all inbound local traffic"
-    vpc_id      = aws_vpc.vpc_us-east-2_esteban.id
 
     ingress {
         description = "Inbound local ssh connection"
