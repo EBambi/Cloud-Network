@@ -20,7 +20,8 @@ resource "aws_security_group" "allow_local" {
 }
 
 resource "aws_vpc" "vpc_us-east-2_esteban" {
-  cidr_block    = "10.0.0.0/16"
+  cidr_block                = "10.0.0.0/16"
+  default_security_group_id = aws_security_group.allow_local.id
 
   tags = {
         Name    = "vent-nebo"
