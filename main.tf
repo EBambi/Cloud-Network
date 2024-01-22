@@ -48,15 +48,15 @@ resource "aws_subnet" "subnet2_us-east-2_esteban" {
   }
 }
 
-resource "aws_key_pair" "deployer" {
-    key_name    = "Conector"
-    public_key  = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/LEjiP13pvURUMq1w56Kkmck8bGqkTCVKafhD26LSQLBd1eeiXj7vUcjikAyqEemlUmEYkW4eRHsN0Y9Y6YOAnNX9iozSACB5Yqhd/qyx5XdN3AN12RPKCG1Plkokp+Qcny5VXYDrq9AF677+2PidCRbx/YYL1eFJr64TZxGmx/UKcfCq4I4/x+Q2JGinym5Pfohe+JL2SyyyoEk5SucMn5rTXGyp25wCq8ZqhgQxS7JK5f8BmnYDZLKCt3EjII3fZIdf7H2h8yTKBix6TPP3IfiZQO/lTeWGPJF1IVMrc9GZC2jaB7uGRK3l/4DUvKAyLJDkNPnDED6mTLU5sv4N PeexMain"
-}
+#resource "aws_key_pair" "deployer" {
+#   key_name    = "Conector"
+#   public_key  = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/LEjiP13pvURUMq1w56Kkmck8bGqkTCVKafhD26LSQLBd1eeiXj7vUcjikAyqEemlUmEYkW4eRHsN0Y9Y6YOAnNX9iozSACB5Yqhd/qyx5XdN3AN12RPKCG1Plkokp+Qcny5VXYDrq9AF677+2PidCRbx/YYL1eFJr64TZxGmx/UKcfCq4I4/x+Q2JGinym5Pfohe+JL2SyyyoEk5SucMn5rTXGyp25wCq8ZqhgQxS7JK5f8BmnYDZLKCt3EjII3fZIdf7H2h8yTKBix6TPP3IfiZQO/lTeWGPJF1IVMrc9GZC2jaB7uGRK3l/4DUvKAyLJDkNPnDED6mTLU5sv4N PeexMain"
+#}
 
 resource "aws_instance" "ubuntu1-ec2" {
     ami                         = var.instance_ami_ubuntu
     instance_type               = var.instance_type
-    key_name                    = "Conector"
+    key_name                    = aws_key_pair.PeexMain.public_key
     subnet_id                   = aws_subnet.subnet1_us-east-2_esteban.id
     vpc_security_group_ids      = [aws_security_group.allow_local_vpc.id]
     private_ip                  = "10.0.0.10"
@@ -70,7 +70,7 @@ resource "aws_instance" "ubuntu1-ec2" {
 resource "aws_instance" "ubuntu2-ec2" {
     ami                     = var.instance_ami_ubuntu
     instance_type           = var.instance_type
-    key_name                = "Conector"
+    key_name                = "PeexMain"
     subnet_id               = aws_subnet.subnet2_us-east-2_esteban.id
     vpc_security_group_ids  = [aws_security_group.allow_local_vpc.id]
     private_ip              = "10.0.128.10"
