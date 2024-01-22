@@ -18,7 +18,7 @@ resource "aws_security_group" "allow_local" {
     }
 }
 
-resource "aws_vpc" "vpc_us-west-2_esteban" {
+resource "aws_vpc" "vpc_us-east-2_esteban" {
   cidr_block    = "10.0.0.0/16"
 
   tags = {
@@ -26,20 +26,20 @@ resource "aws_vpc" "vpc_us-west-2_esteban" {
     }
 }
 
-resource "aws_subnet" "subnet1_us-west-2_esteban" {
-  vpc_id            = aws_vpc.vpc_us-west-2_esteban.id
+resource "aws_subnet" "subnet1_us-east-2_esteban" {
+  vpc_id            = aws_vpc.vpc_us-east-2_esteban.id
   cidr_block        = "10.0.0.0/17"
-  availability_zone = "us-west-2a"
+  availability_zone = "us-east-2a"
 
   tags = {
     Name            = "snet-public"
   }
 }
 
-resource "aws_subnet" "subnet2_us-west-2_esteban" {
-  vpc_id            = aws_vpc.vpc_us-west-2_esteban.id
+resource "aws_subnet" "subnet2_us-east-2_esteban" {
+  vpc_id            = aws_vpc.vpc_us-east-2_esteban.id
   cidr_block        = "10.0.128.0/17"
-  availability_zone = "us-west-2a"
+  availability_zone = "us-east-2a"
 
   tags = {
     Name            = "snet-private"
@@ -56,7 +56,7 @@ resource "aws_instance" "ubuntu-ec2" {
     instance_type           = var.instance_type
     security_groups         = ["esteban-sandbox-group"]
     key_name                = "deployer-key"
-    subnet_id               = aws_subnet.subnet1_us-west-2_esteban.id
+    subnet_id               = aws_subnet.subnet1_us-east-2_esteban.id
 
     tags = {
         Name    = "ubuntu-esteban"
@@ -68,7 +68,7 @@ resource "aws_instance" "windows-ec2" {
     instance_type           = var.instance_type
     security_groups         = ["esteban-sandbox-group"]
     key_name                = "deployer-key"
-    subnet_id               = aws_subnet.subnet2_us-west-2_esteban.id
+    subnet_id               = aws_subnet.subnet2_us-east-2_esteban.id
 
     tags = {
         Name    = "windows-esteban"
