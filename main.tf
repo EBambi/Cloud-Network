@@ -1,23 +1,3 @@
-resource "aws_security_group" "allow_local" {
-    name        = "esteban-lab-group"
-    description = "Allow all inbound local traffic"
-
-    ingress {
-        description = "Inbound local ssh connection"
-        from_port   = "22"
-        to_port     = "22"
-        protocol    = "TCP"
-        cidr_blocks = ["186.113.135.184/32"]
-    }
-
-    egress {
-        from_port   = 0
-        to_port     = 0
-        protocol    = "-1"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
-}
-
 resource "aws_vpc_security_group_ingress_rule" "inbound-ssh-local" {
     security_group_id = aws_security_group.allow_local_vpc.id
 
