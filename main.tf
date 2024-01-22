@@ -19,11 +19,31 @@ resource "aws_security_group" "allow_local" {
 }
 
 resource "aws_vpc" "vpc_us-west-2_esteban" {
-  cidr_block    = "192.168.0.0/16"
+  cidr_block    = "10.0.0.0/16"
 
   tags = {
-        Name    = "esteban-sandbox-vpc"
+        Name    = "vent-nebo"
     }
+}
+
+resource "aws_subnet" "subnet1_us-west-2_esteban" {
+  vpc_id            = aws_vpc.vpc_us-west-2_esteban.id
+  cidr_block        = "10.0.0.0/17"
+  availability_zone = "us-west-2a"
+
+  tags = {
+    Name            = "snet-public"
+  }
+}
+
+resource "aws_subnet" "subnet2_us-west-2_esteban" {
+  vpc_id            = aws_vpc.vpc_us-west-2_esteban.id
+  cidr_block        = "10.0.128.0/17"
+  availability_zone = "us-west-2a"
+
+  tags = {
+    Name            = "snet-private"
+  }
 }
 
 resource "aws_key_pair" "deployer" {
